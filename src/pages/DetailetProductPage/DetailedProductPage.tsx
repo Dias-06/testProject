@@ -41,9 +41,9 @@ const DetailedProductPage = () => {
               className="detail-image"
             />
           </div>
-          <button className="detail-like-button">
+          <button onClick={() => handleLike(Number(id))} className="detail-like-button">
             <Heart size={24} />
-            <span onClick={() => handleLike(Number(id))}>{isLiked ? "Added to favorites" : "Add to favorites"}</span>
+            <span>{isLiked ? "Added to favorites" : "Add to favorites"}</span>
           </button>
         </div>
 
