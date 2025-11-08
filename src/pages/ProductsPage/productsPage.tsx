@@ -1,4 +1,5 @@
 import  { useEffect, useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 import styles from './styles.module.css'
 import Header from '../../components/Header/Header';
 import Card from '../../components/Card/Card';
@@ -16,6 +17,8 @@ export default function ProductsPage() {
   },[])
   const [filter, setFilter] = useState("all")
   const filteredBooks = booksList.items.filter(item => filter == 'all' ? true : item.liked)
+
+
   return (
     <div className={styles.container}>
       <Header />
@@ -27,15 +30,17 @@ export default function ProductsPage() {
           Favorites
         </button>
       </div>
-      <div className={styles.productsGrid}>
-        {filteredBooks.map((product) => (
-          <Link key={product.id} to={`/products/${product.id}`}>
-            <Card product={product} />
-          </Link>
-          
-        ))}
-      </div>
+      {booksList.status === 'loading' && <div className='loading'> <ClipLoader color="#4A90E2" size={60} /> </div>}
+      {booksList.status === 'fault' && <p className='fault'>Something went wrong</p>}
+      {booksList.status === 'idle' && (
+        <div className={styles.productsGrid}>
+          {filteredBooks.map(product => (
+            <Link key={product.id} to={`/products/${product.id}`}>
+              <Card product={product} />
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
-  
 };
