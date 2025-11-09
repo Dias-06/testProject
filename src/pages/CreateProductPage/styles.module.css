@@ -51,6 +51,10 @@
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
+.inputError{
+  border-color: red;
+  box-shadow: 0 0 0 3px rgba(230, 10, 10, 0.1);
+}
 
 .input::placeholder {
   color: #999;
